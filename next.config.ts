@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: 'export',
-  basePath: '/nobre-matilha',
+  output: "export",
+  // basePath: "/nobre-matilha",
   experimental: {
     // Habilita a pasta src/app
   },
