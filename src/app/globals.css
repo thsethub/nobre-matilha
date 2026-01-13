@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Nunito", sans-serif;
+  --font-display: "Outfit", sans-serif;
+
+  --radius: 0.75rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* ===== NOBRE MATILHA - CORES DA MARCA ===== */
+  
+  /* Azul Marinho (Navy) - Cor principal */
+  --color-brand-navy: #1a2744;
+  --color-brand-navy-light: #334e68;
+  --color-brand-navy-dark: #102a43;
+  
+  /* Dourado (Gold) - Cor de destaque */
+  --color-brand-gold: #D4A853;
+  --color-brand-gold-light: #edc86f;
+  --color-brand-gold-dark: #c49a45;
+  
+  /* Creme - Background suave */
+  --color-brand-cream: #FAF8F5;
+  --color-brand-cream-dark: #f5f0e8;
+  
+  /* ===== CORES DO SISTEMA ===== */
+  --color-background: var(--color-brand-cream);
+  --color-foreground: var(--color-brand-navy);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: var(--color-brand-navy);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: var(--color-brand-navy);
+
+  --color-primary: var(--color-brand-gold);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-secondary: var(--color-brand-cream-dark);
+  --color-secondary-foreground: var(--color-brand-navy);
+
+  --color-muted: #f0ebe3;
+  --color-muted-foreground: #627d98;
+
+  --color-accent: var(--color-brand-gold);
+  --color-accent-foreground: hsl(0 0% 100%);
+
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-border: #e2ddd5;
+  --color-input: #e2ddd5;
+  --color-ring: var(--color-brand-gold);
+
+  /* Cores de status */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+
+  /* Sidebar Admin */
+  --color-sidebar: var(--color-brand-navy);
+  --color-sidebar-foreground: #f0f4f8;
+  --color-sidebar-primary: var(--color-brand-gold);
+  --color-sidebar-primary-foreground: hsl(0 0% 100%);
+  --color-sidebar-accent: #243b53;
+  --color-sidebar-accent-foreground: #f0f4f8;
+  --color-sidebar-border: #334e68;
+  --color-sidebar-ring: var(--color-brand-gold);
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-marquee: marquee 20s linear infinite;
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    /* ===== NOBRE MATILHA - VARIÁVEIS CSS ===== */
+    
+    /* Cores da marca (para uso com hsl() se necessário) */
+    --brand-navy: 218 43% 18%;
+    --brand-navy-light: 210 33% 31%;
+    --brand-gold: 41 62% 58%;
+    --brand-gold-light: 41 76% 68%;
+    --brand-cream: 35 43% 97%;
+    
+    /* Sistema de cores */
+    --background: 35 43% 97%;
+    --foreground: 218 43% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 218 43% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 43% 18%;
+
+    --primary: 41 62% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 35 35% 94%;
+    --secondary-foreground: 218 43% 18%;
+
+    --muted: 35 25% 92%;
+    --muted-foreground: 210 20% 50%;
+
+    --accent: 41 62% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 20% 88%;
+    --input: 35 20% 88%;
+    --ring: 41 62% 58%;
+
+    --radius: 0.75rem;
+
+    /* Cores de status */
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+    --info: 217 91% 60%;
+
+    /* Sidebar */
+    --sidebar-background: 218 43% 18%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 41 62% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 33% 25%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 210 33% 31%;
+    --sidebar-ring: 41 62% 58%;
+  }
+
+  .dark {
+    --background: 218 43% 8%;
+    --foreground: 35 30% 95%;
+
+    --card: 218 40% 12%;
+    --card-foreground: 35 30% 95%;
+
+    --popover: 218 40% 12%;
+    --popover-foreground: 35 30% 95%;
+
+    --primary: 41 62% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 218 35% 18%;
+    --secondary-foreground: 35 30% 90%;
+
+    --muted: 218 30% 18%;
+    --muted-foreground: 35 20% 65%;
+
+    --accent: 41 62% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 218 30% 22%;
+    --input: 218 30% 22%;
+    --ring: 41 62% 58%;
+
+    --sidebar-background: 218 43% 6%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 41 62% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 218 35% 15%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 218 30% 18%;
+    --sidebar-ring: 41 62% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Nunito", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Outfit", sans-serif;
+  }
+}
+
+@layer components {
+  /* ===== NOBRE MATILHA - COMPONENTES UTILITÁRIOS ===== */
+  
+  /* Gradientes da marca */
+  .brand-gradient {
+    background: linear-gradient(135deg, #D4A853 0%, #c49a45 100%);
+  }
+  
+  .brand-gradient-navy {
+    background: linear-gradient(135deg, #1a2744 0%, #334e68 100%);
+  }
+  
+  .brand-gradient-cream {
+    background: linear-gradient(180deg, #FAF8F5 0%, #f5f0e8 100%);
+  }
+  
+  /* Sombras da marca */
+  .brand-shadow {
+    box-shadow: 0 4px 6px -1px rgba(212, 168, 83, 0.2), 0 2px 4px -1px rgba(212, 168, 83, 0.1);
+  }
+  
+  .brand-shadow-navy {
+    box-shadow: 0 4px 6px -1px rgba(26, 39, 68, 0.15), 0 2px 4px -1px rgba(26, 39, 68, 0.1);
+  }
+  
+  /* Botões da marca */
+  .btn-brand {
+    @apply bg-brand-gold text-white font-semibold px-6 py-2.5 rounded-lg;
+    @apply hover:bg-brand-gold-dark transition-all duration-200;
+    @apply shadow-sm hover:shadow-md;
+  }
+  
+  .btn-brand-outline {
+    @apply border-2 border-brand-gold text-brand-gold font-semibold px-6 py-2.5 rounded-lg;
+    @apply hover:bg-brand-gold hover:text-white transition-all duration-200;
+  }
+  
+  .btn-brand-navy {
+    @apply bg-brand-navy text-white font-semibold px-6 py-2.5 rounded-lg;
+    @apply hover:bg-brand-navy-light transition-all duration-200;
+  }
+  
+  /* Cards da marca */
+  .card-brand {
+    @apply bg-white rounded-xl border border-border p-6;
+    @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+  
+  /* Títulos estilizados */
+  .title-brand {
+    @apply font-display font-bold text-brand-navy;
+  }
+  
+  /* Input estilizado */
+  .input-brand {
+    @apply w-full px-4 py-2.5 border border-border rounded-lg;
+    @apply focus:outline-none focus:ring-2 focus:ring-brand-gold/30 focus:border-brand-gold;
+    @apply transition-all duration-200;
+  }
+  
+  /* Badge dourado */
+  .badge-gold {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+    @apply bg-brand-gold/10 text-brand-gold-dark;
+  }
+  
+  /* Wave decorativa */
+  .brand-wave {
+    clip-path: ellipse(100% 100% at 50% 100%);
+  }
+}
